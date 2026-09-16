@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>43.201.20.95 - 바로가기</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#22c55e',
+                            600: '#16a34a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+        }
+        .bg-grid {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -5px rgba(34, 197, 94, 0.35);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 65px 0px rgba(34, 197, 94, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-grid text-slate-100 flex items-center justify-center p-4 selection:bg-emerald-500 selection:text-slate-950">
+
+    <main class="max-w-md w-full bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl p-8 sm:p-10 shadow-2xl text-center space-y-8 relative overflow-hidden">
+        
+        <!-- Ambient Top Light Glow -->
+        <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Header Section -->
+        <div class="space-y-3 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Server Online
+            </div>
+            
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                <span class="font-mono text-emerald-400">43.201.20.95</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-400">
+                버튼을 누르면 바로 해당 호스트 페이지로 이동합니다.
+            </p>
+        </div>
+
+        <!-- Main Link Button -->
+        <div class="space-y-4 relative z-10">
+            <a href="http://43.201.20.95" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="glow-effect w-full inline-flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-base sm:text-lg px-8 py-4 rounded-2xl transition-all duration-300 active:scale-95 group">
+                <span>43.201.20.95 페이지 바로가기</span>
+                <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </a>
+
+            <!-- Secondary Actions -->
+            <button onclick="copyIP()" 
+                    class="w-full inline-flex items-center justify-center gap-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/80 px-4 py-2.5 rounded-xl text-xs font-mono font-medium transition duration-200 active:scale-95">
+                <i class="fa-regular fa-copy text-emerald-400"></i>
+                <span>IP 주소 복사 (43.201.20.95)</span>
+            </button>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="pt-2 border-t border-slate-800/80 text-[11px] text-slate-500 font-mono">
+            http://43.201.20.95
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-800 text-white border border-emerald-500/40 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 z-50 backdrop-blur-md">
+        <div class="h-6 w-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-check text-xs"></i>
+        </div>
+        <p id="toast-message" class="text-xs font-medium text-slate-200">복사되었습니다.</p>
+    </div>
+
+    <script>
+        function copyIP() {
+            const tempInput = document.createElement('input');
+            tempInput.value = '43.201.20.95';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast('IP 주소가 복사되었습니다!');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
